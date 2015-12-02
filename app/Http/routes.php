@@ -14,11 +14,13 @@ use Carbon\Carbon as Carbon;
 
 // Route::get('/', 'WelcomeController@index');
 
-Route::get('/', function() {
-	$foo = Carbon::now();
-	dd($foo);
-	return view('welcome');
-});
+// Route::get('/', function() {
+// 	$foo = Carbon::now();
+// 	dd($foo);
+// 	return view('welcome');
+// });
+
+Route::get('/', 'AngularController@serveApp');
 
 Route::group(array('prefix' => 'api'), function()
 {
