@@ -7,7 +7,6 @@
 		
 	</head>
 	<body ng-app="tramatic" ng-controller="Controller as vm">
-		foo
 		<div class="main" ng-view></div>
 		<script src="{!! asset('js/vendor.js') !!}"></script>
 		<script src="{!! asset('js/app.js') !!}"></script>
