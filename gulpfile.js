@@ -40,6 +40,7 @@ gulp.task('bower-js', function() {
 		.on('error', onError)
 		.pipe(filter('**/*.js'))
 		.pipe(concat(jsFile, {sourcesContent: true}))
+		.pipe(uglify())
 		// .pipe(gulpIf(Elixir.config.production, uglify()))
 		.pipe(gulp.dest(jsOutputFolder || Elixir.config.js.outputFolder))
 }).watch('bower.json');
@@ -81,7 +82,8 @@ gulp.task('angular-js', function() {
 
 
 gulp.task('default', ['bower-js','bower-css','angular-js'], function() {
-	
+	gulp.watch('bower.json', ['bower-js', 'bower-css']);
+	gulp.watch('./angular/**/*.js', ['angular-js']);
 });
 /*
  |--------------------------------------------------------------------------

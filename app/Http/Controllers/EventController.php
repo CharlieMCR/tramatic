@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Event;
+use Carbon\Carbon as Carbon;
 
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class EventController extends Controller {
 	 */
 	public function index()
 	{
-		$events = Event::with('venues')->orderBy('start_time', 'ASC')->get();
+		$today = Carbon::today();
+		$events = Event::where('start_time', '>', $today->toDateTimeString())->with('venues')->orderBy('start_time', 'ASC')->get();
         return $events;
 	}
 
