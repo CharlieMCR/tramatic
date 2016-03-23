@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="UTF-8">
+		<title>Tramatic</title>
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0">
 		<base href="/">
 		<link rel="stylesheet" href="{!! asset('css/vendor.css') !!}">
 	    <link rel="stylesheet" href="{!! asset('css/app.css') !!}">
