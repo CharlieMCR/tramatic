@@ -11,3 +11,4 @@ npm-debug.log
 !.elasticbeanstalk/*.global.yml
 
 deploy.sh
+storage/database.sqlite
