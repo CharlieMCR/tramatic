@@ -27,17 +27,6 @@ class Kernel extends ConsoleKernel {
 		$schedule->command('inspire')
 				 ->hourly();
 
-		// $schedule->call(function(){
-		// })->everyMinute();
-
-		// $schedule->call(function(){
-  //           // Scrape::foo_event();
-  //           // $mufc = Scrape::mufc();
-  //           // $mcfc = Scrape::mcfc();
-  //           // Scrape::fixtures($mufc);
-  //           // Scrape::fixtures($mcfc);
-  //       // })->weekly();
-  //       })->everyMinute();
 		$schedule->call(function()
 		{
 			ApiCalls::seed(65,'etihad-stadium','Etihad Stadium');
