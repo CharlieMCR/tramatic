@@ -11,6 +11,7 @@ var autoprefix = require('gulp-autoprefixer');
 var less = require('gulp-less');
 var jshint = require('gulp-jshint');
 var ngAnnotate = require('gulp-ng-annotate');
+var path = require('path');
 
 var baseDir = './angular/';
 
@@ -80,10 +81,22 @@ gulp.task('angular-js', function() {
 		// }));
 }).watch(baseDir + '/**/*.js');
 
+gulp.task('styles', function() {
+	var cssOutputFolder = './public/css';
+	gulp.src('./resources/assets/less/app.less')
+	.pipe(less({
+		paths: [ path.join(__dirname, 'less', 'includes')]
+	}))
+	.pipe(concat('app.css'))
+	.pipe(autoprefix({ browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1', 'Explorer >= 8', 'Safari >= 7', 'edge >= 1', 'iOS >= 7']}))
+	.pipe(gulp.dest(cssOutputFolder || config.css.outputFolder))
+});
 
-gulp.task('default', ['bower-js','bower-css','angular-js'], function() {
+
+gulp.task('default', ['bower-js','bower-css','angular-js','styles'], function() {
 	gulp.watch('bower.json', ['bower-js', 'bower-css']);
 	gulp.watch('./angular/**/*.js', ['angular-js']);
+	gulp.watch('./resources/assets/less/app.less');
 });
 /*
  |--------------------------------------------------------------------------

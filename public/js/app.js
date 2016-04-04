@@ -1,5 +1,3 @@
-console.log('foo');
-
 (function() {
 
 	'use strict';
@@ -68,6 +66,7 @@ console.log('foo');
 
 	'use strict';
 
+		Controller.$inject = ["event", "$timeout"];
 	angular
 		.module('tramatic')
 		.controller('Controller', Controller);
@@ -110,7 +109,17 @@ console.log('foo');
 
 			event.getEvents().then(function(results){
 				vm.events = results;
-				console.log(vm.events);
+				for (var i = vm.events.length - 1; i >= 0; i--) {
+					var time = moment(vm.events[i].start_time).format('ddd MMM Do YYYY, h:mm:ss a'),
+					eventDay = moment(vm.events[i].start_time).format('YYYYMMDD'),
+					// today = moment('2016-04-09 16:30:00').format('YYYYMMDD');
+					today = moment().format('YYYYMMDD');
+					if (today === eventDay) {
+						vm.eventsToday.push(vm.events[i]);
+					}
+					vm.events[i].time = time;
+				}
+				// console.log(vm.events);
 			}, function(error) {
 				console.log(error);
 			});
@@ -122,12 +131,12 @@ console.log('foo');
 			// 	console.log(error);
 			// });
 		}
-		Controller.$inject = ["event", "$timeout"];
 })();
 (function() {
 
 	'use strict';
 
+		event.$inject = ["$resource"];
 	angular
 		.module('tramatic')
 		.factory('event', event);
@@ -168,5 +177,4 @@ console.log('foo');
 				// getEventDetail: getEventDetail,
 			}
 		}
-		event.$inject = ["$resource"];
 }());

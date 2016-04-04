@@ -44,7 +44,17 @@
 
 			event.getEvents().then(function(results){
 				vm.events = results;
-				console.log(vm.events);
+				for (var i = vm.events.length - 1; i >= 0; i--) {
+					var time = moment(vm.events[i].start_time).format('ddd MMM Do YYYY, h:mm:ss a'),
+					eventDay = moment(vm.events[i].start_time).format('YYYYMMDD'),
+					// today = moment('2016-04-09 16:30:00').format('YYYYMMDD');
+					today = moment().format('YYYYMMDD');
+					if (today === eventDay) {
+						vm.eventsToday.push(vm.events[i]);
+					}
+					vm.events[i].time = time;
+				}
+				// console.log(vm.events);
 			}, function(error) {
 				console.log(error);
 			});
