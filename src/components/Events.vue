@@ -6,7 +6,7 @@
       <ul>
         <li v-for="event in events">
           <p>{{ event.event_name }}</p>
-          <p>{{ event.date_time }}</p>
+          <p>{{ formatDate(event.date_time) }}</p>
         </li>
       </ul>
     </section>
@@ -16,6 +16,7 @@
 
 <script>
   import axios from 'axios'
+  import moment from 'moment'
 
   export default {
     name: 'Events',
@@ -30,6 +31,10 @@
         axios.get('https://api.tramatic.co.uk/events').then(results => {
           this.events = results.data
         })
+      },
+      formatDate (date) {
+        let moment2 = moment(date)
+        return moment2.utcOffset(moment2.utcOffset()).format('LLLL')
       }
     },
     mounted: function () {
