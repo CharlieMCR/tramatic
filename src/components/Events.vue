@@ -1,6 +1,7 @@
 <template>
   <div>
-    {{ message }}
+    <h2 v-if="todaysEvents && todaysEvents.length">{{ message.today }}</h2>
+    <h2 v-else>{{ message.notToday }}</h2>
     <section v-if="todaysEvents && todaysEvents.length">
       <h3>Today's events</h3>
       <ul>
@@ -31,7 +32,10 @@
     name: 'Events',
     data () {
       return {
-        message: 'You know the tram\'s going to be busy!',
+        message: {
+          today: 'You know the tram\'s going to be busy!',
+          notToday: 'Business as usual.'
+        },
         events: []
       }
     },
