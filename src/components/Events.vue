@@ -4,7 +4,7 @@
     <section>
       <h3>Upcoming events</h3>
       <ul>
-        <li v-for="event in events">
+        <li v-for="event in upcomingEvents">
           <p>{{ event.event_name }}</p>
           <p>{{ formatDate(event.date_time) }}</p>
         </li>
@@ -24,6 +24,15 @@
       return {
         message: 'You know the tram\'s going to be busy!',
         events: []
+      }
+    },
+    computed: {
+      upcomingEvents: function () {
+        if (this.events && this.events.length) {
+          return this.events.filter(function (event) {
+            return moment(event.date_time).diff(moment(), 'months') < 1
+          })
+        }
       }
     },
     methods: {
