@@ -16,7 +16,7 @@
       <ul>
         <li v-for="event in upcomingEvents">
           <p>{{ event.event_name }}</p>
-          <p>{{ formatDate(event.date_time) }}</p>
+          <p>{{ formatDate(event.date_time) }} {{ fromNow(event.date_time) }}</p>
         </li>
       </ul>
     </section>
@@ -65,6 +65,9 @@
       formatDate (date) {
         let eventDate = moment(date)
         return eventDate.utcOffset(eventDate.utcOffset()).format('LLLL')
+      },
+      fromNow (date) {
+        return moment(date).fromNow()
       },
       storeEvents (events) {
         localStorage.setItem('events', JSON.stringify(events))
