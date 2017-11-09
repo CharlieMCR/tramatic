@@ -33,8 +33,8 @@
         })
       },
       formatDate (date) {
-        let moment2 = moment(date)
-        return moment2.utcOffset(moment2.utcOffset()).format('LLLL')
+        let eventDate = moment(date)
+        return eventDate.utcOffset(eventDate.utcOffset()).format('LLLL')
       }
     },
     mounted: function () {
