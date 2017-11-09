@@ -1,6 +1,15 @@
 <template>
   <div>
     {{ message }}
+    <section v-if="todaysEvents && todaysEvents.length">
+      <h3>Today's events</h3>
+      <ul>
+        <li v-for="event in todaysEvents">
+          <p>{{ event.event_name }}</p>
+          <p>{{ formatDate(event.date_time) }}</p>
+        </li>
+      </ul>
+    </section>
     <section>
       <h3>Upcoming events</h3>
       <ul>
@@ -31,6 +40,13 @@
         if (this.events && this.events.length) {
           return this.events.filter(function (event) {
             return moment(event.date_time).diff(moment(), 'months') < 1
+          })
+        }
+      },
+      todaysEvents: function () {
+        if (this.events && this.events.length) {
+          return this.events.filter(function (event) {
+            return moment(event.date_time).diff(moment(), 'days') < 1
           })
         }
       }
