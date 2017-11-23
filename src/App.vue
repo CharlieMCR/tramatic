@@ -2,12 +2,17 @@
   <div id="app">
     <h1>Tramatic</h1>
     <router-view/>
+    <site-footer></site-footer>
   </div>
 </template>
 
 <script>
+  import Footer from '@/components/Footer'
   export default {
-    name: 'app'
+    name: 'app',
+    components: {
+      'site-footer': Footer
+    }
   }
 </script>
 
