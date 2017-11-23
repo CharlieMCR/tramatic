@@ -18,4 +18,13 @@
 </script>
 
 <style>
+    footer {
+        text-align: right;
+        padding: .25rem 1rem;
+        font-size: 0.8rem;
+    }
+    a {
+        text-decoration: none;
+        color: #666;
+    }
 </style>
