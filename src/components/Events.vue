@@ -7,7 +7,7 @@
       <ul>
         <li v-for="event in todaysEvents">
           <p>{{ event.event_name }}</p>
-          <p>{{ formatDate(event.date_time) }}</p>
+          <p>{{ formatDate(event.date_time) }} {{ fromNow(event.date_time) }}</p>
         </li>
       </ul>
     </section>
@@ -50,7 +50,7 @@
       todaysEvents: function () {
         if (this.events && this.events.length) {
           return this.events.filter(function (event) {
-            return moment(event.date_time).diff(moment(), 'days') < 1
+            return moment(event.date_time).isSame(moment(), 'day')
           })
         }
       }
